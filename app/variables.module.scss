@@ -1,0 +1,8 @@
+// @use "@carbon/react";
+
+$primary-color: darkblue;
+
+:export {
+  primaryColor: $primary-color;
+}
+

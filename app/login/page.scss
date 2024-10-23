@@ -1,4 +1,4 @@
-@use "../variables.module.scss" as *; // Use all variables from the module
+// @use "../variables.module.scss" as *; // Use all variables from the module
 @use "@carbon/layout";
 
 //text
@@ -12,7 +12,7 @@
   color: white;
 }
 .loginBg {
-  background-color: $primary-color;
+//   background-color: $primary-color;
   padding: 20px;
 }
 
