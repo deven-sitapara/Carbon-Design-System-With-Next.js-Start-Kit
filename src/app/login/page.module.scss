@@ -1,0 +1,23 @@
+@use "@carbon/layout";
+
+.hcenter {
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 100vh;
+  align-items: center;
+  justify-items: center; /* adjusted */
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  // background: url("../assets/images/login-background.jpg") 0 0 no-repeat;
+}
+
+.centerthis {
+  width: layout.rem(400px);
+  /* You can add specific styling here for the centered content */
+}
