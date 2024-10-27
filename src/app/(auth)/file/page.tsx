@@ -8,6 +8,8 @@ import {
   DataTable,
   Grid,
   Heading,
+  OverflowMenu,
+  OverflowMenuItem,
   Pagination,
   Table,
   TableBody,
@@ -22,6 +24,21 @@ import {
   TableSlugRow,
 } from "@carbon/react";
 import CustomDataTable from "@/components/CustomDataTable/CustomDataTable";
+
+const FileActionsMenu = (row) => {
+  return (
+    <TableCell className="cds--table-column-menu">
+      <OverflowMenu size="sm" flipped>
+        {row.id == "load-balancer-1" && (
+          <OverflowMenuItem itemText="Stop app" data-id={row.id} />
+        )}
+
+        <OverflowMenuItem itemText="Restart app" />
+        <OverflowMenuItem itemText="Rename app" />
+      </OverflowMenu>
+    </TableCell>
+  );
+};
 
 export default function FilePage() {
   const [paginationPage, setPaginationPage] = useState(1);
@@ -126,6 +143,8 @@ export default function FilePage() {
           pageSize={paginationPageSize}
           totalItems={totalItems}
           handlePaginationChange={handlePaginationChange}
+          action="Action"
+          renderAction={FileActionsMenu}
         />
 
         {/* <DataTable rows={rows} headers={headers}>
@@ -182,17 +201,7 @@ export default function FilePage() {
             </TableContainer>
           )}
         </DataTable>
-        <Pagination
-          backwardText="Previous page"
-          forwardText="Next page"
-          itemsPerPageText="Items per page:"
-          onChange={() => {}}
-          page={1}
-          pageSize={10}
-          pageSizes={[10, 20, 30, 40, 50]}
-          size="md"
-          totalItems={103}
-        /> */}
+    */}
 
         {/* // Grid  */}
       </Content>

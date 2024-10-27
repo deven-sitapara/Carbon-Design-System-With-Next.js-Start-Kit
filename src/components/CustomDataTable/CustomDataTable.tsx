@@ -30,7 +30,7 @@ import {
 import { log } from "console";
 
 export default function CustomDataTable(props) {
-  console.log(props.rows);
+  // console.log(props.rows);
 
   return (
     <DataTable
@@ -68,7 +68,9 @@ export default function CustomDataTable(props) {
                     {header.header}
                   </TableHeader>
                 ))}
-                <TableHeader>Action</TableHeader>
+
+                {/* Conditionally render Action column header */}
+                {props.action && <TableHeader>Action</TableHeader>}
               </TableRow>
             </TableHead>
 
@@ -91,13 +93,16 @@ export default function CustomDataTable(props) {
                       </TableCell>
                     ))}
 
-                    <TableCell className="cds--table-column-menu">
+                    {/* // action  */}
+                    {props.renderAction && props.renderAction(row)}
+
+                    {/* <TableCell className="cds--table-column-menu">
                       <OverflowMenu size="sm" flipped>
                         <OverflowMenuItem itemText="Stop app" />
                         <OverflowMenuItem itemText="Restart app" />
                         <OverflowMenuItem itemText="Rename app" />
                       </OverflowMenu>
-                    </TableCell>
+                    </TableCell> */}
                   </TableExpandRow>
 
                   <TableExpandedRow
@@ -151,4 +156,18 @@ export default function CustomDataTable(props) {
       )}
     />
   );
+}
+
+{
+  /* <Pagination
+            backwardText="Previous page"
+            forwardText="Next page"
+            itemsPerPageText="Items per page:"
+            onChange={() => {}}
+            page={1}
+            pageSize={10}
+            pageSizes={[10, 20, 30, 40, 50]}
+            size="md"
+            totalItems={103}
+          /> */
 }
