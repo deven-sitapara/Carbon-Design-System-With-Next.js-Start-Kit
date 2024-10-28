@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/styles/scss/theme' as *;
-@use '@carbon/styles/scss/themes';
-@use '@carbon/styles/scss/type';
-@use '@carbon/styles/scss/config';
+@use "@carbon/styles/scss/theme" as *;
+@use "@carbon/styles/scss/themes";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/config";
 
 // Best to stick with user preference - DARK
 @media (prefers-color-scheme: dark) {
@@ -57,12 +57,12 @@
 }
 
 .carbon-theme-dropdown {
-  position: fixed;
-  bottom: 1rem; // stylelint-disable-line carbon/layout-token-use
-  left: 1rem; // stylelint-disable-line carbon/layout-token-use
+  // position: fixed;
+  // bottom: 1rem; // stylelint-disable-line carbon/layout-token-use
+  // left: 1rem; // stylelint-disable-line carbon/layout-token-use
   min-width: 11.5rem;
 }
 
 .carbon-theme-dropdown .#{config.$prefix}--label {
-  @include type.type-style('label-01');
+  // @include type.type-style("label-01");
 }

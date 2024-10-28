@@ -1,21 +1,18 @@
 "use client";
 
 import _styles from "./page.scss"; // Import the SCSS module for class
-import { ThemeDropdown } from "../../../components/ThemeSelector/ThemeDropdown";
-import LoginForm from "@/components/LoginForm/LoginForm";
-import { Column, Grid } from "@carbon/react";
+import { Column, Content, Grid, Heading } from "@carbon/react";
 
 export default function LoginPage() {
   return (
-    <div className={_styles.wrapper}>
-      <Grid>
-        <Column sm={4} md={8} lg={8}>
-          <ThemeDropdown></ThemeDropdown>
-          <div className={_styles.centerthis}>
-            <LoginForm></LoginForm>
-          </div>
-        </Column>
-      </Grid>
-    </div>
+    <>
+      <Content about="Main Content">
+        <div className="spacing-scale">
+          <section className="mb-06">
+            <Heading>File</Heading>
+          </section>
+        </div>
+      </Content>
+    </>
   );
 }

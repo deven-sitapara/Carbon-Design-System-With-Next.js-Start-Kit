@@ -10,10 +10,7 @@ export default function LoginPage() {
     <div className={_styles.wrapper}>
       <Grid>
         <Column sm={4} md={8} lg={8}>
-          <ThemeDropdown></ThemeDropdown>
-          <div>
-            <LoginForm></LoginForm>
-          </div>
+          <LoginForm></LoginForm>
         </Column>
       </Grid>
     </div>

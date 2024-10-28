@@ -66,7 +66,9 @@ export function AuthThemeProvider(props) {
         // eslint-disable-next-line react/prop-types
         props.children
       }
-      <ThemeDropdown></ThemeDropdown>
+      {/* <div className="mt-12">
+        <ThemeDropdown></ThemeDropdown>
+      </div> */}
     </ThemeContext.Provider>
   );
 }

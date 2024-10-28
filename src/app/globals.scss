@@ -11,13 +11,14 @@
 //text
 @use "@carbon/type";
 
-// --------------
-
+// @include hide-at-sm; // Only hidden on sm breakpoint
+// @include hide-at-lg; // Only hidden on lg breakpoint
+// @include hide-at-xlg; // Only hidden on xlg breakpoint
+// @include hide-at-max; //Only hidden on max breakpoint // --------------
 //Tailwind
 // @tailwind base;
 // @tailwind components;
 // @tailwind utilities;
-
 @use "./variables.module.scss";
 
 @use "./spacing.module.scss";
