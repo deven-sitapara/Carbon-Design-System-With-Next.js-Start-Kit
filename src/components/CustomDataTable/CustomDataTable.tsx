@@ -1,25 +1,25 @@
 // components/CustomDataTable/CustomDataTable.tsx
 "use client";
-import React, { useState } from "react";
 import {
   DataTable,
+  Pagination,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
+  TableExpandedRow,
+  TableExpandHeader,
+  TableExpandRow,
   TableHead,
   TableHeader,
   TableRow,
-  Pagination,
-  TableExpandRow,
-  TableExpandedRow,
-  TableExpandHeader,
-  StructuredListCell,
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListRow,
-  StructuredListBody,
 } from "@carbon/react";
+import React, { useState } from "react";
 
 export default function CustomDataTable(props) {
   const [paginationPage, setPaginationPage] = useState(1);
@@ -28,25 +28,19 @@ export default function CustomDataTable(props) {
   const totalItems = props.rows.length; // Total items based on static data
 
   // Calculate the current rows to display based on pagination
-  const startIndex = (paginationPage - 1) * paginationPageSize;
-  const endIndex = startIndex + paginationPageSize;
-  const currentRows = props.rows.slice(startIndex, endIndex);
+  // const startIndex = (paginationPage - 1) * paginationPageSize;
+  // const endIndex = startIndex + paginationPageSize;
+  // const currentRows = props.rows.slice(startIndex, endIndex);
 
   // Calculate total pages
-  const totalPages = Math.ceil(totalItems / paginationPageSize);
-
-  // Dummy function to handle pagination change
-  const handlePaginationChange = (event) => {
-    setPaginationPage(event.page);
-    setPaginationPageSize(event.pageSize);
-  };
+  // const totalPages = Math.ceil(totalItems / paginationPageSize);
 
   const ExpandedView = ({ row }) => {
     return (
       <StructuredListWrapper>
         <StructuredListHead>
           <StructuredListRow head>
-            {row.cells.map((cell, index) => {
+            {row.cells.map((cell) => {
               return (
                 <StructuredListCell head data-key={cell.id} key={cell.id}>
                   {cell.info.header}
@@ -57,7 +51,7 @@ export default function CustomDataTable(props) {
         </StructuredListHead>
         <StructuredListBody>
           <StructuredListRow>
-            {row.cells.map((cell, index) => {
+            {row.cells.map((cell) => {
               return (
                 <StructuredListCell head data-key={cell.id} key={cell.id}>
                   {cell.value}
@@ -118,7 +112,7 @@ export default function CustomDataTable(props) {
                     enableToggle={true}
                     {...getExpandHeaderProps()}
                   />
-                  {headers.map((header, i) => (
+                  {headers.map((header) => (
                     <TableHeader
                       {...getHeaderProps({
                         header,
@@ -135,7 +129,7 @@ export default function CustomDataTable(props) {
               </TableHead>
 
               <TableBody>
-                {currentPageRows.map((row, index) => (
+                {currentPageRows.map((row) => (
                   <React.Fragment key={row.id}>
                     <TableExpandRow
                       {...getRowProps({
@@ -178,9 +172,7 @@ export default function CustomDataTable(props) {
               backwardText="Previous page"
               forwardText="Next page"
               itemsPerPageText="Items per page:"
-              onChange={(page: number, pageSize: number) => {
-                // console.log({ page, pageSize });
-
+              onChange={(page: { page: number; pageSize: number }) => {
                 setPaginationPage(page.page);
                 setPaginationPageSize(page.pageSize);
               }}

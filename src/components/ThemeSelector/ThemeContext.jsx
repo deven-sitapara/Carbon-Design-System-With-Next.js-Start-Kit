@@ -41,7 +41,9 @@ const initialState = {
 };
 
 const themeReducer = (state, action) => {
-  switch (action.type.value) {
+  switch (
+    action.type // Use action.type directly here
+  ) {
     case "carbon-theme--user-preference-white-90":
     case "carbon-theme--user-preference-10-100":
     case "carbon-theme--white":
@@ -54,16 +56,12 @@ const themeReducer = (state, action) => {
   }
 };
 
-export function ThemeProvider(props) {
+export function ThemeProvider({ children }) {
   const [state, dispatch] = useReducer(themeReducer, initialState);
 
   return (
     <ThemeContext.Provider value={{ state, dispatch }}>
-      
-      {
-        // eslint-disable-next-line react/prop-types
-        props.children
-      }
+      {children}
     </ThemeContext.Provider>
   );
 }

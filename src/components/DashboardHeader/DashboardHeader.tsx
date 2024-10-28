@@ -55,10 +55,6 @@ const DashboardHeader = () => {
             isPersistent={false}
           >
             <SideNavItems>
-              {/* <HeaderSideNavItems>
-                <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
-              </HeaderSideNavItems> */}
-
               <HeaderSideNavItems aria-label="IBM [Platform]">
                 <HeaderMenuItem href="/dashboard">Dashboard</HeaderMenuItem>
                 <HeaderMenuItem href="/file">File</HeaderMenuItem>

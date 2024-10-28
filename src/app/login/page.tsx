@@ -1,9 +1,8 @@
 "use client";
 
-import _styles from "./page.module.scss"; // Import the SCSS module for class
-import { ThemeDropdown } from "../../components/ThemeSelector/ThemeDropdown";
 import LoginForm from "@/components/LoginForm/LoginForm";
 import { Column, Grid } from "@carbon/react";
+import _styles from "./page.module.scss"; // Import the SCSS module for class
 
 export default function LoginPage() {
   return (

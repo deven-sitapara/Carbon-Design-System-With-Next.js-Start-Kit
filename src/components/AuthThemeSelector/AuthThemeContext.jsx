@@ -1,7 +1,6 @@
 "use client";
-import React, { createContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import DashboardHeader from "../DashboardHeader/DashboardHeader";
-import { ThemeDropdown } from "../AuthThemeSelector/ThemeDropdown";
 
 export const themeData = [
   {

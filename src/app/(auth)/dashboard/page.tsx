@@ -1,15 +1,6 @@
 "use client";
 
-import CustomGaugeChart from "@/components/GaugeChart/GuageChart";
-import { GaugeChart } from "@carbon/charts-react";
-import {
-  ClickableTile,
-  Column,
-  Content,
-  Grid,
-  Heading,
-  Row,
-} from "@carbon/react";
+import { ClickableTile, Column, Content, Grid, Heading } from "@carbon/react";
 
 export default function DashboardPage() {
   return (
