@@ -2,6 +2,7 @@
 "use client";
 import {
   DataTable,
+  DataTableRow,
   Pagination,
   StructuredListBody,
   StructuredListCell,
@@ -21,21 +22,40 @@ import {
 } from "@carbon/react";
 import React, { useState } from "react";
 
-export default function CustomDataTable(props) {
+interface Header {
+  key: string;
+  header: string;
+}
+
+export default function CustomDataTable({
+  title,
+  description,
+  rows,
+  headers,
+  action,
+  renderAction,
+}: {
+  title: string;
+  description: string;
+  rows: {
+    id: number;
+    title: string;
+    branch: string;
+    company: string;
+    date: string;
+    updated_at: string;
+    created_by: string;
+  }[];
+  headers: Header[];
+  action: string;
+  renderAction: (row: any) => JSX.Element;
+}) {
   const [paginationPage, setPaginationPage] = useState(1);
   const [paginationPageSize, setPaginationPageSize] = useState(10);
 
-  const totalItems = props.rows.length; // Total items based on static data
+  const totalItems = rows.length; // Total items based on static data
 
-  // Calculate the current rows to display based on pagination
-  // const startIndex = (paginationPage - 1) * paginationPageSize;
-  // const endIndex = startIndex + paginationPageSize;
-  // const currentRows = props.rows.slice(startIndex, endIndex);
-
-  // Calculate total pages
-  // const totalPages = Math.ceil(totalItems / paginationPageSize);
-
-  const ExpandedView = ({ row }) => {
+  const ExpandedView = ({ row }: { row: DataTableRow<any[]> }) => {
     return (
       <StructuredListWrapper>
         <StructuredListHead>
@@ -64,7 +84,7 @@ export default function CustomDataTable(props) {
     );
   };
 
-  const getCurrentPageRows = (rows) => {
+  const getCurrentPageRows = (rows: DataTableRow<any[]>[]) => {
     let lastItemIndex = 0;
 
     // let { paginationPage, paginationPageSize } = this.state;
@@ -82,8 +102,8 @@ export default function CustomDataTable(props) {
 
   return (
     <DataTable
-      rows={props.rows}
-      headers={props.headers}
+      rows={rows.map((row) => ({ ...row, id: String(row.id) }))} // ensures id is a string
+      headers={headers}
       render={({
         rows,
         headers,
@@ -99,10 +119,8 @@ export default function CustomDataTable(props) {
 
         return (
           <TableContainer
-            title={props.title ? props.title : "Data Table"}
-            description={
-              props.description ? props.description : "With batch expansion"
-            }
+            title={title ? title : "Data Table"}
+            description={description ? description : "With batch expansion"}
             {...getTableContainerProps()}
           >
             <Table {...getTableProps()} aria-label="table">
@@ -124,7 +142,7 @@ export default function CustomDataTable(props) {
                   ))}
 
                   {/* Conditionally render Action column header */}
-                  {props.action && <TableHeader>Action</TableHeader>}
+                  {action && <TableHeader>Action</TableHeader>}
                 </TableRow>
               </TableHead>
 
@@ -148,9 +166,9 @@ export default function CustomDataTable(props) {
                       ))}
 
                       {/* // action  */}
-                      {props.renderAction && (
+                      {renderAction && (
                         <TableCell className="cds--table-column-menu">
-                          {props.renderAction(row)}
+                          {renderAction(row)}
                         </TableCell>
                       )}
                     </TableExpandRow>

@@ -1,4 +1,6 @@
 "use client";
+import CustomDataTable from "@/components/CustomDataTable/CustomDataTable";
+import { Edit } from "@carbon/icons-react";
 import {
   ComposedModal,
   Content,
@@ -12,51 +14,42 @@ import {
   SelectItem,
   TextInput,
 } from "@carbon/react";
-import CustomDataTable from "@/components/CustomDataTable/CustomDataTable";
+import React, { useRef, useState } from "react";
 import rowData from "../../../data/file.json";
-import { Edit } from "@carbon/icons-react";
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 
-const EditButton = ({ row }) => {
-  const button = useRef();
+interface RowData {
+  id: number;
+  title: string;
+  branch: string;
+  company: string;
+  date: string;
+}
 
-  /**
-   * Simple state manager for modals.
-   */
-  const ModalStateManager = ({
-    renderLauncher: LauncherContent,
-    children: ModalContent,
-    // button,
-  }) => {
-    const [open, setOpen] = useState(false);
-    const [isMounted, setIsMounted] = useState(false);
+interface ModalStateManagerProps {
+  renderLauncher: (props: { setOpen: (open: boolean) => void }) => JSX.Element;
+  children: (props: {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+  }) => JSX.Element;
+}
 
-    // Check if component is mounted
-    useEffect(() => {
-      setIsMounted(true);
-    }, []);
+const ModalStateManager: React.FC<ModalStateManagerProps> = ({
+  renderLauncher,
+  children,
+}) => {
+  const [open, setOpen] = useState(false);
 
-    // const modalRoot = isMounted
-    //   ? document.body.appendChild(document.createElement("div"))
-    //   : null;
+  return (
+    <div>
+      {renderLauncher({ setOpen })}
+      {children({ open, setOpen })}
+    </div>
+  );
+};
 
-    // const modalRoot = isMounted ? document.getElementById("modal-root") : null;
+const EditButton: React.FC<{ row: RowData }> = ({ row }) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-    return (
-      <>
-        {!ModalContent || typeof modalRoot === null
-          ? null
-          : createPortal(
-              <ModalContent open={open} setOpen={setOpen} />,
-              // button
-              // modalRoot
-              document.body
-            )}
-        {LauncherContent && <LauncherContent open={open} setOpen={setOpen} />}
-      </>
-    );
-  };
   return (
     <ModalStateManager
       renderLauncher={({ setOpen }) => (
@@ -64,7 +57,7 @@ const EditButton = ({ row }) => {
           kind="ghost"
           size="sm"
           label="Edit File Record"
-          ref={button}
+          ref={buttonRef}
           onClick={() => setOpen(true)}
         >
           <Edit />
@@ -72,86 +65,59 @@ const EditButton = ({ row }) => {
       )}
     >
       {({ open, setOpen }) => (
-        <ComposedModal
-          size="sm"
-          open={open}
-          onClose={() => {
-            setOpen(false);
-          }}
-          launcherButtonRef={button}
-        >
+        <ComposedModal size="sm" open={open} onClose={() => setOpen(false)}>
           <ModalHeader label="File Module" title={`Edit File #${row.id}`} />
           <ModalBody>
-            <p
-              style={{
-                marginBottom: "1rem",
-              }}
-            >
-              Edit File Record #{row.id} with following data, Date field will be
-              readonly.
+            <p style={{ marginBottom: "1rem" }}>
+              Edit File Record #{row.id} with the following data; the Date field
+              will be readonly.
             </p>
             <TextInput
               data-modal-primary-focus
-              id="text-input-1"
+              id="title-input"
               labelText="Title of File"
               placeholder="Title of File"
               value={row.title}
-              style={{
-                marginBottom: "1rem",
-              }}
+              style={{ marginBottom: "1rem" }}
             />
             <Select
-              id="select-1"
-              defaultValue="Rajkot"
+              id="branch-select"
               labelText="Branch"
               value={row.branch}
-              style={{
-                marginBottom: "1rem",
-              }}
+              style={{ marginBottom: "1rem" }}
             >
-              <SelectItem value="Rajkot" text="Rajkot" />
-              <SelectItem value="Morbi" text="Morbi" />
-              <SelectItem value="Bhavnagar" text="Bhavnagar" />
-              <SelectItem value="Junagadh" text="Junagadh" />
+              {["Rajkot", "Morbi", "Bhavnagar", "Junagadh"].map((branch) => (
+                <SelectItem key={branch} value={branch} text={branch} />
+              ))}
             </Select>
-
             <Select
-              id="select-1"
-              defaultValue="HOME FIRST"
-              labelText="Compnany"
+              id="company-select"
+              labelText="Company"
               value={row.company}
-              style={{
-                marginBottom: "1rem",
-              }}
+              style={{ marginBottom: "1rem" }}
             >
-              <SelectItem value="HOME FIRST" text="HOME FIRST	" />
-              <SelectItem
-                value="ADANI HOUSING FINANCE"
-                text="ADANI HOUSING FINANCE"
-              />
+              {["HOME FIRST", "ADANI HOUSING FINANCE"].map((company) => (
+                <SelectItem key={company} value={company} text={company} />
+              ))}
             </Select>
-
             <TextInput
-              readOnly={true}
-              id=""
+              readOnly
+              id="date-input"
               labelText="Date"
               placeholder="Date"
               value={row.date}
-              style={{
-                marginBottom: "1rem",
-              }}
+              style={{ marginBottom: "1rem" }}
             />
           </ModalBody>
-          <ModalFooter
-            primaryButtonText="Update"
-            secondaryButtonText="Cancel"
-          ></ModalFooter>
+          <ModalFooter primaryButtonText="Update" secondaryButtonText="Cancel">
+            <div></div>
+          </ModalFooter>
         </ComposedModal>
       )}
     </ModalStateManager>
   );
 };
-const FileActionsMenu = (row) => {
+const FileActionsMenu = (row: any) => {
   const rowObj = convertRowToFlatObject(row);
 
   return (
@@ -167,10 +133,14 @@ const FileActionsMenu = (row) => {
     </>
   );
 };
+interface Header {
+  key: string;
+  header: string;
+}
 
 export default function FilePage() {
   // Sample header data
-  const headers = [
+  const headers: Header[] = [
     { key: "id", header: "ID" },
     { key: "title", header: "Title" },
     { key: "branch", header: "Branch" },
@@ -182,12 +152,6 @@ export default function FilePage() {
   return (
     <>
       <Content about="Main Content">
-        {/* <div className="spacing-scale">
-          <section className="mb-06">
-            <Heading>File</Heading>
-          </section>
-        </div> */}
-
         <CustomDataTable
           title="File"
           description="Files for internal use "
@@ -201,10 +165,18 @@ export default function FilePage() {
   );
 }
 
-function convertRowToFlatObject(row) {
-  const flatObj = {};
-  row.cells.forEach((cell) => {
+function convertRowToFlatObject(row: any): RowData {
+  const flatObj: { [key: string]: any } = {};
+  row.cells.forEach((cell: { info: { header: string }; value: any }) => {
     flatObj[cell.info.header] = cell.value;
   });
-  return flatObj;
+
+  // Convert id to a number
+  return {
+    id: Number(flatObj.id) || 0, // default to 0 if id is not present
+    title: flatObj.title || "",
+    branch: flatObj.branch || "",
+    company: flatObj.company || "",
+    date: flatObj.date || "",
+  };
 }

@@ -1,44 +1,12 @@
 import { Notification, Switcher, UserAvatar } from "@carbon/icons-react";
-import {
-  Header,
-  HeaderContainer,
-  HeaderName,
-  HeaderNavigation,
-  HeaderMenuButton,
-  HeaderMenuItem,
-  HeaderGlobalBar,
-  HeaderGlobalAction,
-  SkipToContent,
-  SideNav,
-  SideNavItems,
-  HeaderSideNavItems,
-  HeaderMenu,
-  Column,
-  Grid,
-} from "@carbon/react";
+import { Header, HeaderContainer, HeaderName, HeaderNavigation, HeaderMenuButton, HeaderMenuItem, HeaderGlobalBar, HeaderGlobalAction, SkipToContent, SideNav, SideNavItems, HeaderSideNavItems, HeaderMenu, Column, Grid, } from "@carbon/react";
 import { ThemeDropdown } from "../AuthThemeSelector/ThemeDropdown";
 import { useRouter } from "next/navigation";
-
-type HeaderContainerRenderProps = {
-  isSideNavExpanded: boolean;
-  onClickSideNavExpand: () => void;
-};
-
 const DashboardHeader = () => {
-  const router = useRouter();
-  return (
-    <HeaderContainer
-      render={({
-        isSideNavExpanded,
-        onClickSideNavExpand,
-      }: HeaderContainerRenderProps) => (
-        <Header aria-label="Carbon Tutorial">
+    const router = useRouter();
+    return (<HeaderContainer render={({ isSideNavExpanded, onClickSideNavExpand }) => (<Header aria-label="Carbon Tutorial">
           <SkipToContent />
-          <HeaderMenuButton
-            aria-label="Open menu"
-            onClick={onClickSideNavExpand}
-            isActive={isSideNavExpanded}
-          />
+          <HeaderMenuButton aria-label="Open menu" onClick={onClickSideNavExpand} isActive={isSideNavExpanded}/>
           <HeaderName href="/" prefix="CM">
             Law Firm
           </HeaderName>
@@ -57,11 +25,7 @@ const DashboardHeader = () => {
             </HeaderMenu>
           </HeaderNavigation>
 
-          <SideNav
-            aria-label="Side navigation"
-            expanded={isSideNavExpanded}
-            isPersistent={false}
-          >
+          <SideNav aria-label="Side navigation" expanded={isSideNavExpanded} isPersistent={false}>
             <SideNavItems>
               <HeaderSideNavItems aria-label="IBM [Platform]">
                 <HeaderMenuItem href="/dashboard">Dashboard</HeaderMenuItem>
@@ -101,32 +65,16 @@ const DashboardHeader = () => {
               </Grid>
             </div>
 
-            <HeaderGlobalAction
-              aria-label="Notifications"
-              tooltipAlignment="center"
-              className="action-icons"
-            >
-              <Notification size={20} />
+            <HeaderGlobalAction aria-label="Notifications" tooltipAlignment="center" className="action-icons">
+              <Notification size={20}/>
             </HeaderGlobalAction>
-            <HeaderGlobalAction
-              aria-label="User Avatar"
-              tooltipAlignment="center"
-              className="action-icons"
-              onClick={() => router.push("/login")}
-            >
-              <UserAvatar size={20} />
+            <HeaderGlobalAction aria-label="User Avatar" tooltipAlignment="center" className="action-icons" onClick={() => router.push("/login")}>
+              <UserAvatar size={20}/>
             </HeaderGlobalAction>
-            <HeaderGlobalAction
-              aria-label="App Switcher"
-              tooltipAlignment="end"
-            >
-              <Switcher size={20} />
+            <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">
+              <Switcher size={20}/>
             </HeaderGlobalAction>
           </HeaderGlobalBar>
-        </Header>
-      )}
-    />
-  );
+        </Header>)}/>);
 };
-
 export default DashboardHeader;

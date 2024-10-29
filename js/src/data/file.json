@@ -1,0 +1,182 @@
+[
+    {
+        "id": 1,
+        "title": "Adani Flats",
+        "branch": "Rajkot",
+        "company": "HOME FIRST",
+        "date": "26-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Deven Sitapara"
+    },
+    {
+        "id": 2,
+        "title": "Silver Heights",
+        "branch": "Morbi",
+        "company": "ADANI HOUSING FINANCE",
+        "date": "25-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Rajesh Patel"
+    },
+    {
+        "id": 3,
+        "title": "Krishna Township",
+        "branch": "Bhavnagar",
+        "company": "MUTHOOT HOMEFIN",
+        "date": "24-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Amit Mehta"
+    },
+    {
+        "id": 4,
+        "title": "Green Valley",
+        "branch": "Junagadh",
+        "company": "TATA CAPITAL",
+        "date": "23-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Suresh Bhatt"
+    },
+    {
+        "id": 5,
+        "title": "Sundar Residency",
+        "branch": "Rajkot",
+        "company": "INCRED FINANCE",
+        "date": "22-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Harsh Shah"
+    },
+    {
+        "id": 6,
+        "title": "Sun Raize Park",
+        "branch": "Ahmedabad",
+        "company": "PNB HOUSING",
+        "date": "21-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Nidhi Desai"
+    },
+    {
+        "id": 7,
+        "title": "Heaven Apartments",
+        "branch": "Rajkot",
+        "company": "WONDER HOME FINANCE",
+        "date": "20-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Jatin Patel"
+    },
+    {
+        "id": 8,
+        "title": "Golden Residency",
+        "branch": "Morbi",
+        "company": "ADANI HOUSING FINANCE",
+        "date": "19-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Meera Joshi"
+    },
+    {
+        "id": 9,
+        "title": "Vrajpar Towers",
+        "branch": "Bhavnagar",
+        "company": "TATA CAPITAL",
+        "date": "18-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Parth Dodiya"
+    },
+    {
+        "id": 10,
+        "title": "Sunflower Heights",
+        "branch": "Junagadh",
+        "company": "HDFC BANK",
+        "date": "17-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Reema Singh"
+    },
+    {
+        "id": 11,
+        "title": "Shakti Tower",
+        "branch": "Rajkot",
+        "company": "TATA CAPITAL HF",
+        "date": "16-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Manish Parmar"
+    },
+    {
+        "id": 12,
+        "title": "Divine Residency",
+        "branch": "Ahmedabad",
+        "company": "INCRED FINANCE",
+        "date": "15-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Ravi Mehta"
+    },
+    {
+        "id": 13,
+        "title": "Royal Palace",
+        "branch": "Morbi",
+        "company": "ADITYA BIRLA HOUSING",
+        "date": "14-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Ankita Shah"
+    },
+    {
+        "id": 14,
+        "title": "Hill View",
+        "branch": "Rajkot",
+        "company": "HOME FIRST",
+        "date": "13-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Mitesh Vora"
+    },
+    {
+        "id": 15,
+        "title": "Eden Villas",
+        "branch": "Junagadh",
+        "company": "TATA CAPITAL",
+        "date": "12-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Kishan Adroja"
+    },
+    {
+        "id": 16,
+        "title": "Silver Arch",
+        "branch": "Bhavnagar",
+        "company": "MUTHOOT HOMEFIN",
+        "date": "11-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Raj Kumar"
+    },
+    {
+        "id": 17,
+        "title": "Spring Valley",
+        "branch": "Morbi",
+        "company": "ADANI HOUSING FINANCE",
+        "date": "10-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Nilesh Patel"
+    },
+    {
+        "id": 18,
+        "title": "Greenwood Residency",
+        "branch": "Rajkot",
+        "company": "PNB HOUSING",
+        "date": "09-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Sonal Shah"
+    },
+    {
+        "id": 19,
+        "title": "Eco Park",
+        "branch": "Junagadh",
+        "company": "HDFC BANK",
+        "date": "08-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Dhruv Patel"
+    },
+    {
+        "id": 20,
+        "title": "Sunshine Heights",
+        "branch": "Bhavnagar",
+        "company": "TATA CAPITAL",
+        "date": "07-10-2024",
+        "updated_at": "27-10-2024",
+        "created_by": "Rahul Verma"
+    }
+]
