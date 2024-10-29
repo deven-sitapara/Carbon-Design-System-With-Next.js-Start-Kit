@@ -1,9 +1,15 @@
-// lib/fetchFileData.ts
-import path from "path";
- import { promises as fs } from 'fs';
+export default function convertRowToFlatObject(row: any) {
+  const flatObj: { [key: string]: any } = {};
+  row.cells.forEach((cell: { info: { header: string }; value: any }) => {
+    flatObj[cell.info.header] = cell.value;
+  });
 
-export async function fetchFileData() {
-  const filePath = path.join(process.cwd(), "src/data/file.json");
-  const fileContents = await fs.readFile(filePath, "utf8");
-  return JSON.parse(fileContents);
+  // Convert id to a number
+  return {
+    id: Number(flatObj.id) || 0, // default to 0 if id is not present
+    title: flatObj.title || "",
+    branch: flatObj.branch || "",
+    company: flatObj.company || "",
+    date: flatObj.date || "",
+  };
 }

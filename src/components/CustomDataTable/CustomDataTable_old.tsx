@@ -21,68 +21,15 @@ import {
   TableRow,
 } from "@carbon/react";
 import React, { useState } from "react";
+import { CustomDataTableProps } from "./types";
+import ExpandedView from "./expanded";
+import CustomPagination from "./pagination";
 
-interface Header {
-  key: string;
-  header: string;
-}
-
-export default function CustomDataTable({
-  title,
-  description,
-  rows,
-  headers,
-  action,
-  renderAction,
-}: {
-  title: string;
-  description: string;
-  rows: {
-    id: number;
-    title: string;
-    branch: string;
-    company: string;
-    date: string;
-    updated_at: string;
-    created_by: string;
-  }[];
-  headers: Header[];
-  action: string;
-  renderAction: (row: any) => JSX.Element;
-}) {
+export default function CustomDataTable_old(props: CustomDataTableProps) {
   const [paginationPage, setPaginationPage] = useState(1);
   const [paginationPageSize, setPaginationPageSize] = useState(10);
 
-  const totalItems = rows.length; // Total items based on static data
-
-  const ExpandedView = ({ row }: { row: DataTableRow<any[]> }) => {
-    return (
-      <StructuredListWrapper>
-        <StructuredListHead>
-          <StructuredListRow head>
-            {row.cells.map((cell) => {
-              return (
-                <StructuredListCell head data-key={cell.id} key={cell.id}>
-                  {cell.info.header}
-                </StructuredListCell>
-              );
-            })}
-          </StructuredListRow>
-        </StructuredListHead>
-        <StructuredListBody>
-          <StructuredListRow>
-            {row.cells.map((cell) => {
-              return (
-                <StructuredListCell head data-key={cell.id} key={cell.id}>
-                  {cell.value}
-                </StructuredListCell>
-              );
-            })}
-          </StructuredListRow>
-        </StructuredListBody>
-      </StructuredListWrapper>
-    );
-  };
+  const totalItems = props.tableData.rows.length; // Total items based on static data
 
   const getCurrentPageRows = (rows: DataTableRow<any[]>[]) => {
     let lastItemIndex = 0;
@@ -102,8 +49,8 @@ export default function CustomDataTable({
 
   return (
     <DataTable
-      rows={rows.map((row) => ({ ...row, id: String(row.id) }))} // ensures id is a string
-      headers={headers}
+      rows={props.tableData.rows.map((row) => ({ ...row, id: String(row.id) }))} // ensures id is a string
+      headers={props.tableData.headers}
       render={({
         rows,
         headers,
@@ -119,11 +66,14 @@ export default function CustomDataTable({
 
         return (
           <TableContainer
-            title={title ? title : "Data Table"}
-            description={description ? description : "With batch expansion"}
+            title={props.title ? props.title : "Data Table"}
+            description={
+              props.description ? props.description : "With batch expansion"
+            }
             {...getTableContainerProps()}
           >
             <Table {...getTableProps()} aria-label="table">
+              {/* Table Header  */}
               <TableHead>
                 <TableRow>
                   <TableExpandHeader
@@ -142,10 +92,11 @@ export default function CustomDataTable({
                   ))}
 
                   {/* Conditionally render Action column header */}
-                  {action && <TableHeader>Action</TableHeader>}
+                  {props?.action && <TableHeader>Action</TableHeader>}
                 </TableRow>
               </TableHead>
 
+              {/* Table Body here  */}
               <TableBody>
                 {currentPageRows.map((row) => (
                   <React.Fragment key={row.id}>
@@ -166,9 +117,9 @@ export default function CustomDataTable({
                       ))}
 
                       {/* // action  */}
-                      {renderAction && (
+                      {props.renderAction && (
                         <TableCell className="cds--table-column-menu">
-                          {renderAction(row)}
+                          {props.renderAction(row)}
                         </TableCell>
                       )}
                     </TableExpandRow>
@@ -186,18 +137,15 @@ export default function CustomDataTable({
                 ))}
               </TableBody>
             </Table>
-            <Pagination
-              backwardText="Previous page"
-              forwardText="Next page"
-              itemsPerPageText="Items per page:"
+
+            {/* Pagination here  */}
+            <CustomPagination
               onChange={(page: { page: number; pageSize: number }) => {
                 setPaginationPage(page.page);
                 setPaginationPageSize(page.pageSize);
               }}
-              page={paginationPage}
+              paginationPage={paginationPage}
               pageSize={paginationPageSize}
-              pageSizes={[10, 20, 30, 40, 50]}
-              size="md"
               totalItems={totalItems}
             />
           </TableContainer>
