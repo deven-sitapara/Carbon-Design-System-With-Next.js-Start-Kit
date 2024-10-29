@@ -85,7 +85,11 @@ export default function CustomDataTable(props: CustomDataTableProps) {
                   ))}
 
                   {/* Conditionally render Action column header */}
-                  {props?.action && <TableHeader>Action</TableHeader>}
+                  {props?.action ? (
+                    <TableHeader>{props.action}</TableHeader>
+                  ) : (
+                    <TableHeader>Action</TableHeader>
+                  )}
                 </TableRow>
               </TableHead>
 
