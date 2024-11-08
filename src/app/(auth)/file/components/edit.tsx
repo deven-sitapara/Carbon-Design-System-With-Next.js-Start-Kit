@@ -1,6 +1,8 @@
+import convertRowToFlatObject from "@/lib/fetchFileData";
 import { Edit } from "@carbon/icons-react";
 import {
   ComposedModal,
+  DataTableRow,
   IconButton,
   ModalBody,
   ModalFooter,
@@ -32,9 +34,10 @@ const ModalStateManager: React.FC<ModalStateManagerProps> = ({
     </div>
   );
 };
-
-const EditButton: React.FC<{ row: RowData }> = ({ row }) => {
+const EditButton: React.FC<{ row: DataTableRow<any[]> }> = ({ row }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const rowObj = convertRowToFlatObject(row);
 
   return (
     <ModalStateManager
