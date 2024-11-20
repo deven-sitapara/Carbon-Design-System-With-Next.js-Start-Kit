@@ -85,7 +85,7 @@ const EditButton: React.FC<{ row: DataTableRow<any[]> }> = ({ row }) => {
               value={row.company}
               style={{ marginBottom: "1rem" }}
             >
-              {["HOME FIRST", "ADANI HOUSING FINANCE"].map((company) => (
+              {["HOME FIRST", "ADANI` HOUSING FINANCE"].map((company) => (
                 <SelectItem key={company} value={company} text={company} />
               ))}
             </Select>

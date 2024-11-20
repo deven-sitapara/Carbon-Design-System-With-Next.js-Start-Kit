@@ -26,7 +26,7 @@
 :root[data-carbon-theme="g10"] {
   @include theme.theme(themes.$g10);
   .wrapper {
-    background: url("./assets/images/login-background.jpg") 0 0 no-repeat;
+    // background: url("./assets/images/login-background.jpg") 0 0 no-repeat;
   }
 }
 
